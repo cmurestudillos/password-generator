@@ -25,11 +25,11 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Bump version
-        run: |
-          npm version patch -m "Bump version to %s [ci skip]"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Bump version
+      #   run: |
+      #     npm version patch -m "Bump version to %s [ci skip]"
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Push updated version
       #   run: |
