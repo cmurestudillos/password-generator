@@ -1,0 +1,21 @@
+# Directorios compilados
+dist
+build
+out
+coverage
+
+# Node
+node_modules
+package-lock.json
+
+# Archivos generados
+*.min.json
+*.min.js
+*.min.css
+
+# Otros
+.env
+.DS_Store
+.vscode
+.idea
+.cache
