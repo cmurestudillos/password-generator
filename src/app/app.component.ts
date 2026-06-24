@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { PasswordGeneratorComponent } from './password-generator/password-generator.component';
-import { version } from '../../package.json';
+import packageJson from '../../package.json';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,PasswordGeneratorComponent],
+  imports: [PasswordGeneratorComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  appVersion: string = '';
-  title = 'password-generator';
+  public appVersion = '';
+  public title = 'password-generator';
 
-  ngOnInit() {
-    this.appVersion = version;
+  public ngOnInit(): void {
+    this.appVersion = packageJson.version;
   }
 }
