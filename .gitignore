@@ -11,6 +11,8 @@
 npm-debug.log
 yarn-error.log
 package-lock.json
+serve.log
+serve.err.log
 
 # IDEs and editors
 .idea/
@@ -44,3 +46,4 @@ testem.log
 Thumbs.db
 .vercel
 .husky
+.env*

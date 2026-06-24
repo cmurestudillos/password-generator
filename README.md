@@ -1,10 +1,10 @@
 # Generador de Contraseñas PWA
 
-Este proyecto es una aplicación web progresiva (PWA) desarrollada con Angular que genera contraseñas seguras y aleatorias. La aplicación ofrece una interfaz de usuario intuitiva y es completamente responsive, lo que permite su uso en dispositivos móviles y de escritorio.
+Este proyecto es una aplicación web progresiva (PWA) desarrollada con Angular que genera contraseñas seguras y aleatorias usando la Web Crypto API. La aplicación ofrece una interfaz de usuario intuitiva y es completamente responsive, lo que permite su uso en dispositivos móviles y de escritorio.
 
 ## Características
 
-- Generación de contraseñas aleatorias con opciones personalizables
+- Generación de contraseñas aleatorias criptográficamente seguras (`crypto.getRandomValues`), con opciones personalizables
 - Interfaz de usuario moderna y responsive utilizando Angular Material
 - Funcionalidad de copiar al portapapeles
 - Implementado como PWA para instalación en dispositivos y uso offline
@@ -13,8 +13,8 @@ Este proyecto es una aplicación web progresiva (PWA) desarrollada con Angular q
 
 ## Requisitos previos
 
-- Node.js (versión 12 o superior)
-- Angular CLI (versión 12 o superior)
+- Node.js 20 o superior
+- [pnpm](https://pnpm.io/) (gestionado vía Corepack: `corepack enable`)
 
 ## Instalación
 
@@ -30,7 +30,7 @@ Este proyecto es una aplicación web progresiva (PWA) desarrollada con Angular q
 
 3. Instala las dependencias:
    ```
-   npm install
+   pnpm install
    ```
 
 ## Uso
@@ -38,7 +38,7 @@ Este proyecto es una aplicación web progresiva (PWA) desarrollada con Angular q
 Para ejecutar la aplicación en modo de desarrollo:
 
 ```
-ng serve
+pnpm start
 ```
 
 Navega a `http://localhost:4200/` en tu navegador. La aplicación se recargará automáticamente si cambias alguno de los archivos fuente.
@@ -48,17 +48,25 @@ Navega a `http://localhost:4200/` en tu navegador. La aplicación se recargará 
 Para construir el proyecto para producción:
 
 ```
-ng build --prod
+pnpm build
 ```
 
 Los artefactos de construcción se almacenarán en el directorio `dist/`.
+
+## Calidad de código
+
+```
+pnpm lint       # comprueba el código con ESLint
+pnpm lint:fix   # corrige automáticamente lo que sea posible
+pnpm test       # ejecuta los tests unitarios (Karma + Jasmine)
+```
 
 ## Despliegue
 
 Este proyecto está configurado para desplegarse automáticamente en Vercel con cada push a la rama principal. El script de construcción personalizado en Vercel ejecuta:
 
 ```
-npm run release && ng build --prod
+pnpm deploy
 ```
 
 Esto asegura que la versión se actualice antes de cada despliegue.
@@ -72,34 +80,36 @@ src/
 │   │   ├── password-generator.component.ts
 │   │   ├── password-generator.component.html
 │   │   └── password-generator.component.scss
-│   ├── app.module.ts
+│   ├── app.config.ts
+│   ├── app.routes.ts
 │   ├── app.component.ts
 │   ├── app.component.html
 │   └── app.component.scss
 ├── assets/
 │   └── icons/
-│       ├── icon-72x72.png
-│       ├── icon-96x96.png
-│       ├── icon-128x128.png
-│       ├── icon-144x144.png
-│       ├── icon-152x152.png
-│       ├── icon-192x192.png
-│       ├── icon-384x384.png
-│       └── icon-512x512.png
+│       ├── 72.png
+│       ├── 96.png
+│       ├── 128.png
+│       ├── 144.png
+│       ├── 152.png
+│       ├── 192.png
+│       └── 512.png
 ├── index.html
 ├── main.ts
-├── manifest.webmanifest
 └── styles.scss
+public/
+├── favicon.ico
+└── manifest.webmanifest
 ```
 
 ## Versionado
 
-Este proyecto utiliza versionado semántico automático con `standard-version`. La versión se actualiza automáticamente con cada commit y despliegue basándose en los mensajes de commit convencionales.
+Este proyecto utiliza versionado semántico automático con [`commit-and-tag-version`](https://github.com/absolute-version/commit-and-tag-version). La versión se actualiza automáticamente con cada commit y despliegue basándose en los mensajes de commit convencionales.
 
 Para crear manualmente una nueva versión:
 
 ```
-npm run release
+pnpm release
 ```
 
 ## Contribución
